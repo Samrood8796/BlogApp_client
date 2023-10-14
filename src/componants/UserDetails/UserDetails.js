@@ -133,7 +133,7 @@ const UserDetails = ({ userData, forceRender, setForceRender }) => {
                         newPassword: formValues?.newPassword || null,
                         confirmPassword: formValues?.confirmPassword || null,
                     }
-                    const { data } = await putAPI(`/${userData?._id}`, userDetails, token);
+                    await putAPI(`/${userData?._id}`, userDetails, token);
                     setFormErrors({});
                     setLoading(false)
                     setIsPasswordChange(false)
@@ -279,7 +279,7 @@ const UserDetails = ({ userData, forceRender, setForceRender }) => {
                 />) : isPasswordChange ? null : (
                     <div className="text-gray-600">
                         <p className="mb-2">
-                            <span className="font-semibold text-green-400">On Blogger since June 2023</span>
+                            <span className="font-semibold text-blue-400">On Blogger since <span className='text-red-600'>' {new Date(userData.createdAt).toDateString()} '</span></span>
                         </p>
                         <p className="mb-2">
                             <span className="font-semibold">Email:</span> {userData.email}

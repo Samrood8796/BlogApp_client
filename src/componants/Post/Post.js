@@ -3,15 +3,14 @@ import { useState } from 'react'
 import { FaUser } from 'react-icons/fa'
 import { AiFillDelete } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
-import { CommentIcon, HeartIcon, MenuIcon, WarningIcon, } from '../../icons/icons'
+import { CommentIcon, HeartIcon } from '../../icons/icons'
 import axios from '../../utils/axios'
 import { deletePost } from '../../utils/constants'
-import EditPost from '../EditPost/EditPost'
 import Comments from '../comments/comments'
 import { setDeletePost } from '../../state/useReducer'
 import { likePost } from '../../utils/apiCalls'
 import { ConfirmToast } from 'react-confirm-toast';
-import 'react-confirm-alert/src/react-confirm-alert.css';
+// import 'react-confirm-alert/src/react-confirm-alert.css';
 
 import TimeAgo from 'javascript-time-ago'
 import en from 'javascript-time-ago/locale/en'
@@ -41,11 +40,9 @@ const Post = (props) => {
     const likeCount = Object.keys(likes).length
     const PatchLike = () => {
         likePost(token, postId, dispatch)
-    }
-
-
-    const HandleShowComment = () => {
-        setShowComment(!showComment)
+        if (render == true || render ==false) {
+            forceRender(!render)
+        }
     }
 
     const handleDeletePost = async () => {
@@ -57,6 +54,9 @@ const Post = (props) => {
             })
             const id = response.data.id
             dispatch(setDeletePost({ id: id }))
+            if (render == true || render ==false) {
+                forceRender(!render)
+            }
 
         } catch (err) {
             console.log(err);
@@ -122,7 +122,7 @@ const Post = (props) => {
                             <p>{likeCount} likes</p>
                         </div>
                         <div className='flex p-4'>
-                            <div className='cursor-pointer' onClick={HandleShowComment}>
+                            <div className='cursor-pointer' onClick={() => setShowComment(!showComment)}>
                                 <CommentIcon />
                             </div>
                             <p className='px-1 '>{comments?.length}</p>

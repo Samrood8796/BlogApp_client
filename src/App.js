@@ -34,11 +34,6 @@ function App() {
           <Route path='/forgottPassword' element={<ForgottPassword />}/>
           <Route path='/success' element={<div className='text-3xl font-bold p-48 text-green-300'>check your email or spam page </div>} ></Route>
           <Route path='/resetPassword' element={<ResetPassword />} />
-          {/* <Route path='/' element={userDetails && userDetails?.verified === true ? <Home /> : <Navigate to={"/login"} />} />
-          <Route path='/login' element={!userDetails ? <Login />: <Navigate to={"/"}/>} />
-          <Route path='/othersprofile/:id' element={<OthersProfile />} />
-          <Route path='/verifyEmail/:id' element={<VerifyEmail />} />
-          <Route path='*' element={<div className='p-96 text-3xl font-bold'> Bad Request<br />404 found</div>} /> */}
         </Routes>
       </BrowserRouter>
     </div>

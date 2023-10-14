@@ -26,24 +26,10 @@ export const userSlice = createSlice({
             state.user = null
             state.token = null
             state.users= []
-            state.allPosts= []
             state.posts=[]
-            state.conversation = []
-            state.currentChat = null
-            state.chat = {showContact:"block", showMessage:"hidden"}
-        },
-        setFriends: (state, action) => {
-            if (state.user) {
-                state.user.friends = action.payload.friends;
-            } else {
-                console.error("user friends non-existent :(");
-            }
         },
         setPosts: (state, action) => {
             state.posts = action.payload.posts
-        },
-        setAllposts: (state, action) => {
-            state.allPosts = action.payload.posts
         },
         setPost: (state, action) => {
             const updatedPosts = state.posts.map((post) => {
@@ -55,31 +41,18 @@ export const userSlice = createSlice({
         setDeletePost: (state, action) => {
             state.posts = state.posts.filter(post => post._id !== action.payload.id)
         },
-        setAllUsers: (state, action) => {
-            const users = action.payload.users
-            state.users = users
-        },
-        setCurrentChat: (state, action) => {
-            const currentChat = action.payload
-            state.currentChat = currentChat
-        },
-        setConversation: (state, action) => {
-            const conversation = action.payload
-            state.conversation = conversation
-        },
-        setChat: (state, action) => {
-            state.chat.showContact = action.payload.showContact
-            state.chat.showMessage = action.payload.showMessage
-        },
+      
     }
 })
 
-export const { islogin,
-    setLogin, setLogout,
-    setPost, setPosts,
-    setFriends, setUserData,
-    setAllUsers, setAllposts,
-    setDeletePost, setCurrentChat, setConversation,setChat
+export const { 
+    islogin,
+    setLogin, 
+    setLogout,
+    setPost, 
+    setPosts,
+    setUserData,
+    setDeletePost, 
 } = userSlice.actions
 
 export default userSlice.reducer;

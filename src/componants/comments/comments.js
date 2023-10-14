@@ -19,7 +19,9 @@ const Comments = ({ postId ,comments, render, forceRender}) => {
         }).then((response)=>{
             dispatch(setPost({posts:response.data}))
             setComment('')
-            // forceRender(!render)
+            if (render == true || render ==false) {
+                forceRender(!render)
+            }
         })
     }
     return (
@@ -38,7 +40,7 @@ const Comments = ({ postId ,comments, render, forceRender}) => {
                         </div>
                     </div>
                     {/* comment sending icon */}
-                    <div className='p-2' onClick={HandleComment}>
+                    <div className='p-2 cursor-pointer' onClick={HandleComment}>
                         <SubmitIcon />
                     </div> 
                 </div> 
